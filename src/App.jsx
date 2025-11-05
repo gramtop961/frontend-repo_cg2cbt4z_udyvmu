@@ -19,8 +19,8 @@ function App() {
             <a href="#" className="hover:text-white">About</a>
           </nav>
           <div className="flex items-center gap-2">
-            <a href="#" className="hidden rounded-md border border-white/20 px-3 py-1.5 text-sm text-white hover:bg-white/10 sm:block">Compare plans</a>
-            <a href="#demo" className="rounded-md bg-white px-3 py-1.5 text-sm font-medium text-black hover:bg-white/90">Request demo</a>
+            <a href="#" className="hidden rounded-md border border-white/20 px-3 py-1.5 text-sm text-white hover:bg-white/10 sm:block">Compare</a>
+            <a href="#demo" className="rounded-md bg-white px-3 py-1.5 text-sm font-medium text-black hover:bg-white/90">Demo</a>
           </div>
         </div>
       </header>
@@ -35,7 +35,7 @@ function App() {
       {/* Footer */}
       <footer className="border-t border-white/10 bg-black py-10 text-white/70">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <div className="text-sm">© 2025 Orydle AI. All rights reserved. Privacy · Terms · Contact</div>
+          <div className="text-sm">© 2025 Orydle AI • KRUM</div>
           <div className="flex items-center gap-3">
             <a href="#" className="text-sm hover:text-white">Start free trial</a>
             <a href="#" className="text-sm hover:text-white">Contact sales</a>

@@ -1,87 +1,62 @@
 import React from 'react'
-import { Rocket, Shield, Coins, GitBranch, Bug, Plug, Layers, Globe, CheckCircle2 } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Cpu, CircuitBoard, Layers, Rocket, Shield, Zap } from 'lucide-react'
 
-const ValueCard = ({ icon: Icon, title, subtitle }) => (
-  <div className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 text-white transition hover:border-white/20 hover:bg-white/[0.06]">
-    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/30 to-cyan-400/30 text-white">
-      <Icon className="h-5 w-5" />
+const IconTile = ({ icon: Icon, label }) => (
+  <motion.div
+    whileHover={{ y: -4, scale: 1.02 }}
+    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+    className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-5"
+  >
+    <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+      <div className="pointer-events-none absolute -inset-8 bg-[conic-gradient(from_180deg,rgba(124,58,237,0.18),rgba(14,165,233,0.18),transparent_60%)] blur-2xl" />
     </div>
-    <h3 className="font-medium">{title}</h3>
-    <p className="mt-1 text-sm text-white/70">{subtitle}</p>
-  </div>
-)
-
-const FeatureItem = ({ icon: Icon, title, desc }) => (
-  <div className="flex gap-3 rounded-lg border border-white/10 bg-black/30 p-4">
-    <div className="mt-1 text-white/80"><Icon className="h-5 w-5" /></div>
-    <div>
-      <h4 className="text-sm font-medium text-white">{title}</h4>
-      <p className="mt-1 text-sm text-white/70">{desc}</p>
+    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/30 to-cyan-400/30">
+      <Icon className="h-6 w-6 text-white" />
     </div>
-  </div>
+    <div className="text-sm text-white/80">{label}</div>
+  </motion.div>
 )
 
 export default function ValueFeatures() {
   return (
     <section className="relative w-full bg-gradient-to-b from-black to-[#07080b] py-16 text-white">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Value Props */}
-        <div className="mb-12">
-          <h2 className="text-center text-2xl font-semibold sm:text-3xl">Ship faster. Cut costs. Reduce risk.</h2>
-          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-white/70">Accelerate from canvas to CI/CD with automation across design, code, and DevOps.</p>
+      {/* subtle grid */}
+      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+            <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
 
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <ValueCard icon={Rocket} title="Ship faster — 3x faster launches" subtitle="Accelerate time-to-market with flow-to-code automation and built-in CI/CD." />
-            <ValueCard icon={Coins} title="Cut costs — ~40% cheaper builds" subtitle="Reduce engineering and operational costs through automation and standardized templates." />
-            <ValueCard icon={Shield} title="Reduce risk — Integrated QA" subtitle="Automated user-journey tests and flaky-test detection reduce release failures and outages." />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mb-10 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 backdrop-blur">
+            <span className="h-2 w-2 animate-ping rounded-full bg-violet-400" /> Visual + AI + DevOps
           </div>
+          <h2 className="mt-4 bg-gradient-to-br from-white to-white/60 bg-clip-text text-3xl font-semibold text-transparent sm:text-4xl">Less words. More wow.</h2>
         </div>
 
-        {/* Key Features */}
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <FeatureItem icon={Layers} title="Visual Canvas & Architecture Board" desc="Design, iterate and collaborate visually. Flows map to production-ready modules so what you design is what you ship." />
-          <FeatureItem icon={GitBranch} title="AI DevOps — Automated infra & pipelines" desc="Generates Docker config, Terraform templates and CI/CD pipelines to automate the path to production." />
-          <FeatureItem icon={CheckCircle2} title="AI Code-Gen & Context-Rich Stubs" desc="LLM-powered generation that understands architecture context and produces code, interface contracts and tests." />
-          <FeatureItem icon={Bug} title="Integrated QA" desc="Automated user-journey tests and flaky-test detection reduce maintenance and speed up validation." />
-          <FeatureItem icon={Plug} title="Seamless Integrations" desc="Jira, Linear, Slack and more — keep your workflows unified." />
-          <FeatureItem icon={Globe} title="India-optimized templates & Moat" desc="Flow VC ⇄ Code VC engine plus India-first templates for an unfair advantage in the region and enterprise." />
+        {/* Icon matrix */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <IconTile icon={Layers} label="Canvas" />
+          <IconTile icon={Cpu} label="Agents" />
+          <IconTile icon={CircuitBoard} label="Pipelines" />
+          <IconTile icon={Shield} label="QA & Guardrails" />
+          <IconTile icon={Zap} label="Gen Code" />
+          <IconTile icon={Rocket} label="Deploy" />
         </div>
 
-        {/* Outcomes / Metrics */}
-        <div className="mt-14 rounded-xl border border-white/10 bg-white/[0.03] p-6">
-          <h3 className="text-lg font-semibold">Real results you can expect</h3>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-lg bg-black/30 p-4 text-center">
-              <div className="text-3xl font-semibold">3×</div>
-              <div className="mt-1 text-sm text-white/70">Faster launches</div>
-            </div>
-            <div className="rounded-lg bg-black/30 p-4 text-center">
-              <div className="text-3xl font-semibold">~40%</div>
-              <div className="mt-1 text-sm text-white/70">Cheaper builds</div>
-            </div>
-            <div className="rounded-lg bg-black/30 p-4 text-center">
-              <div className="text-3xl font-semibold">~50%</div>
-              <div className="mt-1 text-sm text-white/70">Faster QA cycles</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Use cases */}
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-            <h4 className="text-sm font-semibold text-white/80">Use cases / Who it’s for</h4>
-            <ul className="mt-3 space-y-2 text-sm text-white/75">
-              <li><span className="font-medium text-white">Enterprise IT & Services</span> — accelerate delivery across mid-size Indian IT firms and reduce handoffs.</li>
-              <li><span className="font-medium text-white">Product Teams</span> — move from design to deploy without losing intent in translation.</li>
-              <li><span className="font-medium text-white">ML/AI Teams</span> — get models and ML infra production-ready faster.</li>
-              <li><span className="font-medium text-white">Platform & DevOps</span> — standardize infra and pipelines via templates and automation.</li>
-            </ul>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
-            <h4 className="text-sm font-semibold text-white/80">Technology & security</h4>
-            <p className="mt-2 text-sm text-white/75">React + WASM front‑end, LLM agents for orchestration, and automated infra generation to Docker/Terraform/GitHub Actions.</p>
-            <p className="mt-3 text-sm text-white/75">Enterprise-grade security: role-based access, audit logging, and secure infra templates.</p>
-          </div>
+        {/* Animated metrics */}
+        <div className="mt-12 grid grid-cols-3 gap-3 text-center text-white">
+          {[{k:'3×',l:'faster'},{k:'~40%',l:'cheaper'},{k:'50%',l:'less QA time'}].map((m,i)=> (
+            <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <div className="text-2xl font-semibold">{m.k}</div>
+              <div className="text-xs text-white/70">{m.l}</div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
